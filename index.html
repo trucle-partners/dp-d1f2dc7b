@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; connect-src https://script.google.com https://script.googleusercontent.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#507286">
+<meta name="format-detection" content="telephone=no">
+<title>Đề-Pô Lắng Nghe Bạn</title>
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<header class="top">
+  <img class="logo" src="logo.png" alt="Logo Đề-Pô" width="56" height="56">
+  <div>
+    <div class="brand">ĐỀ-PÔ LẮNG NGHE BẠN</div>
+    <div class="tag">Cùng <span class="nb">Đề-Pô</span> làm mới sau 3 năm</div>
+  </div>
+</header>
+
+<div class="progress" id="progress" hidden>
+  <div class="ptext"><span id="ptitle"></span><span id="pstep"></span></div>
+  <div class="pbar"><div class="pfill" id="pfill"></div></div>
+</div>
+
+<main id="app">
+  <section class="screen" id="s0">
+    <div class="card">
+      <h1>Chào bạn!</h1>
+      <p class="lead">Sau 3 năm, <span class="nb">Đề-Pô</span> đang chuẩn bị <b>làm mới</b>, từ menu đến không gian. Bạn giúp <span class="nb">Đề-Pô</span> chọn <b>điều nên giữ</b> và <b>điều nên đổi</b> nhé!</p>
+      <label class="q" for="code">Nhập mã tham gia</label>
+      <p class="hint">Gồm 3 chữ số, nhân viên sẽ đọc cho bạn.</p>
+      <div class="codebox">
+        <span class="dp">DP</span>
+        <input id="code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" placeholder="_ _ _" aria-label="3 chữ số của mã tham gia">
+      </div>
+      <p class="err" id="codeErr" role="alert"></p>
+      <input class="hp" id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+    </div>
+    <div class="card">
+      <ul class="facts">
+        <li><span class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span>Khoảng <b>3–5 phút</b>, chủ yếu bấm chọn</span></li>
+        <li><span class="fi"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><span><b>Ẩn danh</b>, không hỏi tên hay số điện thoại</span></li>
+        <li><span class="fi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v9H5v-9"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>Có <b>quà cảm ơn</b> từ Đề-Pô</span></li>
+      </ul>
+      <p class="hint note">Không có câu trả lời đúng hay sai. Góp ý chưa hài lòng cũng rất quý với <span class="nb">Đề-Pô</span>.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="done" hidden>
+    <div class="card thanks">
+      <div class="tick" aria-hidden="true">✓</div>
+      <h1>Cảm ơn bạn đã góp&nbsp;ý!</h1>
+      <p class="hand">Bạn vui lòng <b>đưa màn hình này cho nhân viên</b> <span class="nb">Đề-Pô</span> để nhận quà.</p>
+      <div class="codeShow">
+        <div class="cl">Mã của bạn</div>
+        <div class="cv" id="doneCode"></div>
+        <div class="ct" id="doneTime"></div>
+      </div>
+      <div class="gift">
+        <div class="gl">Quà cảm ơn</div>
+        <div class="gv" id="doneGift"></div>
+      </div>
+      <p class="hint">Góp ý của bạn sẽ được <span class="nb">Đề-Pô</span> dùng để làm mới menu và không gian.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="bar" id="bar">
+  <button type="button" class="btn ghost" id="back" hidden>Quay lại</button>
+  <button type="button" class="btn main" id="next">Bắt đầu</button>
+</nav>
+<p class="net" id="netErr" role="alert" hidden></p>
+
+<script src="questions.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
