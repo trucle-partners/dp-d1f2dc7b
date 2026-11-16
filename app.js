@@ -95,7 +95,7 @@
     if (q.type === 'text') {
       var t = el('textarea');
       t.maxLength = 300;
-      t.placeholder = q.ph || 'Bạn có thể bỏ qua nếu chưa nghĩ ra';
+      t.placeholder = q.ph || 'Có thể bỏ qua nếu chưa nghĩ ra';
       if (q.req) t.rows = 2;
       t.setAttribute('data-text', key);
       t.addEventListener('input', function () { S.ans[key] = t.value; syncText(key, t); clearErr(key); save(); });
@@ -157,7 +157,7 @@
       inp.value = v;
       lab.appendChild(inp);
       lab.appendChild(el('span', 'mk'));
-      lab.appendChild(el('span', 'ot', v === OTHER ? 'Khác (bạn ghi rõ)' : v));
+      lab.appendChild(el('span', 'ot', v === OTHER ? 'Khác (xin ghi rõ)' : v));
       inp.addEventListener('change', function () { onPick(key, v, inp.checked); });
       wrap.appendChild(lab);
     });
@@ -167,14 +167,14 @@
       var oi = el('input', 'other');
       oi.type = 'text';
       oi.maxLength = 150;
-      oi.placeholder = 'Bạn ghi rõ ở đây';
+      oi.placeholder = 'Xin ghi rõ ở đây';
       oi.hidden = true;
       oi.setAttribute('data-other', key);
       oi.addEventListener('input', function () { S.oth[key] = oi.value; syncText(key, oi, true); clearErr(key); save(); });
       box.appendChild(oi);
     }
     if (q.type === 'many') {
-      var fn = el('p', 'full-note', 'Đã chọn đủ ' + q.max + '. Muốn đổi, bạn bỏ chọn một ô trước.');
+      var fn = el('p', 'full-note', 'Đã chọn đủ ' + q.max + '. Muốn đổi, xin bỏ chọn một ô trước.');
       fn.hidden = true;
       box.appendChild(fn);
     }
@@ -252,7 +252,7 @@
       if (q.type === 'rate') {
         markButtons(box, '.rb', S.ans[key]);
         var v = S.ans[key];
-        box.querySelector('.chosen').textContent = v ? 'Bạn chọn: ' + v + ' – ' + q.labels[v - 1] : '';
+        box.querySelector('.chosen').textContent = v ? 'Đã chọn: ' + v + ' – ' + q.labels[v - 1] : '';
         return;
       }
       if (q.type === 'grid') {
@@ -307,9 +307,9 @@
       clearErr(key);
       var box = visibleBox(key);
       var msg = '';
-      if (q.type === 'text') { if ((S.ans[key] || '').trim().length < 2) msg = 'Bạn vui lòng viết vài chữ, một câu ngắn là đủ.'; }
-      else if (q.type === 'scale') { if (S.ans[key] == null || S.ans[key] === '') msg = 'Bạn vui lòng chạm vào một số từ 0 đến 10.'; }
-      else if (q.type === 'rate') { if (!S.ans[key]) msg = 'Bạn vui lòng chạm vào một số từ 1 đến 5.'; }
+      if (q.type === 'text') { if ((S.ans[key] || '').trim().length < 2) msg = 'Quý khách vui lòng viết vài chữ, một câu ngắn là đủ.'; }
+      else if (q.type === 'scale') { if (S.ans[key] == null || S.ans[key] === '') msg = 'Quý khách vui lòng chạm vào một số từ 0 đến 10.'; }
+      else if (q.type === 'rate') { if (!S.ans[key]) msg = 'Quý khách vui lòng chạm vào một số từ 1 đến 5.'; }
       else if (q.type === 'grid') {
         var g = gridAns(key), miss = 0;
         box.querySelectorAll('.grow').forEach(function (r) {
@@ -319,8 +319,8 @@
         });
         if (miss) msg = gridMsg(q, miss);
       }
-      else if (!picked(key).length) msg = q.type === 'many' ? 'Bạn vui lòng chọn ít nhất một phương án.' : 'Bạn vui lòng chọn một phương án.';
-      else if (picked(key).indexOf(OTHER) >= 0 && !(S.oth[key] || '').trim()) msg = 'Bạn vui lòng ghi rõ ở ô “Khác”.';
+      else if (!picked(key).length) msg = q.type === 'many' ? 'Quý khách vui lòng chọn ít nhất một phương án.' : 'Quý khách vui lòng chọn một phương án.';
+      else if (picked(key).indexOf(OTHER) >= 0 && !(S.oth[key] || '').trim()) msg = 'Quý khách vui lòng ghi rõ ở ô “Khác”.';
       if (msg) {
         box.classList.add('bad');
         box.querySelector('.err').textContent = msg;
@@ -383,19 +383,19 @@
 
   function startWithCode() {
     var d = ($('code').value || '').replace(/\D/g, '');
-    if (!d || +d === 0) { codeErr('Bạn nhập 3 chữ số nhân viên đọc cho bạn, ví dụ 007.'); $('code').focus(); return; }
+    if (!d || +d === 0) { codeErr('Quý khách vui lòng nhập 3 chữ số nhân viên đã đọc, ví dụ 007.'); $('code').focus(); return; }
     var code = 'DP' + ('00' + d).slice(-3);
     $('code').blur();
     setBusy(true, 'Đang kiểm tra mã…');
     getJSON(API + '?check=' + encodeURIComponent(code)).then(function (r) {
-      if (!r.ok && r.err === 'closed') { codeErr('Khảo sát đã kết thúc. Cảm ơn bạn!'); return; }
-      if (!r.ok) { codeErr('Mã ' + code + ' chưa đúng. Bạn hỏi lại nhân viên giúp nhé.'); return; }
-      if (r.used) { codeErr('Mã ' + code + ' đã được dùng. Bạn hỏi nhân viên mã khác giúp nhé.'); return; }
+      if (!r.ok && r.err === 'closed') { codeErr('Khảo sát đã kết thúc. Cảm ơn Quý khách!'); return; }
+      if (!r.ok) { codeErr('Mã ' + code + ' chưa đúng. Quý khách vui lòng hỏi lại nhân viên.'); return; }
+      if (r.used) { codeErr('Mã ' + code + ' đã được dùng. Quý khách vui lòng hỏi nhân viên mã khác.'); return; }
       codeErr('');
       if (S.code !== code) { S.code = code; S.t0 = Date.now(); }
       show(1);
     }).catch(function () {
-      codeErr('Chưa kết nối được. Bạn kiểm tra mạng (có thể dùng wifi quán) rồi bấm lại.');
+      codeErr('Chưa kết nối được. Quý khách vui lòng kiểm tra mạng (có thể dùng wifi của quán) rồi bấm lại.');
     }).then(function () { setBusy(false); });
   }
 
@@ -426,12 +426,12 @@
     netMsg('');
     getJSON(API, { method: 'POST', body: JSON.stringify(payload()) }).then(function (r) {
       if (r.ok) { finish(r); return; }
-      if (r.err === 'used') netMsg('Mã ' + S.code + ' đã được dùng. Bạn báo nhân viên giúp nhé.');
-      else if (r.err === 'closed') netMsg('Khảo sát đã kết thúc. Cảm ơn bạn!');
-      else if (r.err === 'busy') netMsg('Hệ thống đang bận, bạn bấm “Gửi khảo sát” lại giúp nhé.');
-      else netMsg('Còn câu chưa trả lời. Bạn bấm “Quay lại” để kiểm tra giúp nhé.');
+      if (r.err === 'used') netMsg('Mã ' + S.code + ' đã được dùng. Quý khách vui lòng báo nhân viên.');
+      else if (r.err === 'closed') netMsg('Khảo sát đã kết thúc. Cảm ơn Quý khách!');
+      else if (r.err === 'busy') netMsg('Hệ thống đang bận, Quý khách vui lòng bấm “Gửi khảo sát” lại.');
+      else netMsg('Còn câu chưa trả lời. Quý khách vui lòng bấm “Quay lại” để kiểm tra.');
     }).catch(function () {
-      netMsg('Chưa gửi được. Bạn kiểm tra mạng rồi bấm “Gửi khảo sát” lại. Câu trả lời vẫn được giữ nguyên.');
+      netMsg('Chưa gửi được. Quý khách vui lòng kiểm tra mạng rồi bấm “Gửi khảo sát” lại. Câu trả lời vẫn được giữ nguyên.');
     }).then(function () { setBusy(false); });
   }
 
