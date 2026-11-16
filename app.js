@@ -211,6 +211,7 @@
 
   // Shows or hides follow-up questions and renumbers "Câu n/N" for each flow.
   function applyConditions() {
+    var totals = {};
     Object.keys(Q).forEach(function (k) {
       if (!Q[k].if) return;
       var on = active(k);
@@ -225,7 +226,10 @@
           if (i >= 0) b.querySelector('.qn').textContent = 'Câu ' + (i + 1) + '/' + keys.length;
         });
       });
+      totals[f] = keys.length;
     });
+    // The first question is shown before the flow is known, so it follows the current answer.
+    boxes('seg').forEach(function (b) { b.querySelector('.qn').textContent = 'Câu 1/' + totals[flow()]; });
   }
 
   function syncText(key, src, other) {
@@ -279,12 +283,15 @@
       if (Q[key].type === 'grid') {
         var g = gridAns(key);
         b.querySelectorAll('.grow.bad').forEach(function (r) { if (g[r.getAttribute('data-row')] != null) r.classList.remove('bad'); });
-        if (soft && b.querySelector('.grow.bad')) return;
+        var left = b.querySelectorAll('.grow.bad').length;
+        if (soft && left) { b.querySelector('.err').textContent = gridMsg(Q[key], left); return; }
       }
       b.classList.remove('bad');
       b.querySelector('.err').textContent = '';
     });
   }
+
+  function gridMsg(q, n) { return 'Còn ' + n + ' dòng chưa chấm (viền đỏ). Chưa trải nghiệm thì chọn “' + q.na + '”.'; }
 
   function visibleBox(key) {
     var arr = Array.prototype.filter.call(boxes(key), function (b) { return b.offsetParent; });
@@ -310,7 +317,7 @@
           r.classList.toggle('bad', bad);
           if (bad) miss += 1;
         });
-        if (miss) msg = 'Còn ' + miss + ' dòng chưa chấm (viền đỏ). Chưa trải nghiệm thì chọn “' + q.na + '”.';
+        if (miss) msg = gridMsg(q, miss);
       }
       else if (!picked(key).length) msg = q.type === 'many' ? 'Bạn vui lòng chọn ít nhất một phương án.' : 'Bạn vui lòng chọn một phương án.';
       else if (picked(key).indexOf(OTHER) >= 0 && !(S.oth[key] || '').trim()) msg = 'Bạn vui lòng ghi rõ ở ô “Khác”.';
