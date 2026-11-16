@@ -13,13 +13,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <header class="top">
   <img class="logo" src="logo.png" alt="Logo Đề-Pô" width="56" height="56">
   <div>
-    <div class="brand">ĐỀ-PÔ LẮNG NGHE QUÝ KHÁCH</div>
+    <div class="brand"><span class="nb">ĐỀ-PÔ</span> LẮNG NGHE <span class="nb">QUÝ KHÁCH</span></div>
     <div class="tag">Cùng <span class="nb">Đề-Pô</span> làm mới sau 3 năm</div>
   </div>
 </header>
@@ -32,10 +32,10 @@
 <main id="app">
   <section class="screen" id="s0">
     <div class="card">
-      <h1>Kính chào Quý khách!</h1>
-      <p class="lead">Sau 3 năm, <span class="nb">Đề-Pô</span> đang chuẩn bị <b>làm mới</b>, từ menu đến không gian. Mời Quý khách giúp <span class="nb">Đề-Pô</span> chọn <b>điều nên giữ</b> và <b>điều nên đổi</b>.</p>
+      <h1>Kính chào <span class="nb">Quý khách</span>!</h1>
+      <p class="lead">Sau 3 năm, <span class="nb">Đề-Pô</span> đang chuẩn bị <b>làm mới</b>, từ menu đến không gian. Mời <span class="nb">Quý khách</span> giúp <span class="nb">Đề-Pô</span> chọn <b>điều nên giữ</b> và <b>điều nên đổi</b>.</p>
       <label class="q" for="code">Nhập mã tham gia</label>
-      <p class="hint">Gồm 3 chữ số, nhân viên sẽ đọc cho Quý khách.</p>
+      <p class="hint">Gồm 3 chữ số, nhân viên sẽ đọc cho <span class="nb">Quý khách</span>.</p>
       <div class="codebox">
         <span class="dp">DP</span>
         <input id="code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" placeholder="_ _ _" aria-label="3 chữ số của mã tham gia">
@@ -56,7 +56,7 @@
   <section class="screen" id="done" hidden>
     <div class="card thanks">
       <div class="tick" aria-hidden="true">✓</div>
-      <h1>Cảm ơn Quý khách đã góp&nbsp;ý!</h1>
+      <h1>Cảm ơn <span class="nb">Quý khách</span> đã góp&nbsp;ý!</h1>
       <p class="hand">Quý khách vui lòng <b>đưa màn hình này cho nhân viên</b> <span class="nb">Đề-Pô</span> để nhận quà.</p>
       <div class="codeShow">
         <div class="cl">Mã tham gia</div>
@@ -67,7 +67,7 @@
         <div class="gl">Quà cảm ơn</div>
         <div class="gv" id="doneGift"></div>
       </div>
-      <p class="hint">Góp ý của Quý khách sẽ giúp <span class="nb">Đề-Pô</span> làm mới menu và không gian.</p>
+      <p class="hint">Góp ý của <span class="nb">Quý khách</span> sẽ giúp <span class="nb">Đề-Pô</span> làm mới menu và không gian.</p>
     </div>
   </section>
 </main>
@@ -78,7 +78,7 @@
 </nav>
 <p class="net" id="netErr" role="alert" hidden></p>
 
-<script src="questions.js?v=7"></script>
-<script src="app.js?v=7"></script>
+<script src="questions.js?v=8"></script>
+<script src="app.js?v=8"></script>
 </body>
 </html>

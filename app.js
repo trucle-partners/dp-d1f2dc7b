@@ -26,11 +26,12 @@
   }
 
   // Keeps "Đề-Pô" on one line so the hyphen never splits the brand name.
+  // Keeps "Quý khách" together too, so the polite form of address never splits.
   function rich(tag, cls, text) {
     var e = el(tag, cls);
-    text.split('Đề-Pô').forEach(function (part, i) {
-      if (i) e.appendChild(el('span', 'nb', 'Đề-Pô'));
-      e.appendChild(document.createTextNode(part));
+    text.split(/(Đề-Pô|Quý khách)/).forEach(function (part, i) {
+      if (i % 2) e.appendChild(el('span', 'nb', part));
+      else if (part) e.appendChild(document.createTextNode(part));
     });
     return e;
   }
