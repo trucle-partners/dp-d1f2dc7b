@@ -82,6 +82,7 @@ textarea:focus,input.other:focus,input.one-word:focus,#code:focus{outline:none;b
 .grt{font-size:20px;font-weight:700;margin:0;line-height:1.35}
 .grow.bad .grt{color:var(--err)}
 .grow.bad .rb:not(.on){border-color:#E4A39C}
+.ot,.q,.grt,.hint{text-wrap:pretty}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .bar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:10px;padding:12px 16px;padding-bottom:max(12px,env(safe-area-inset-bottom));background:rgba(246,242,234,.97);border-top:1px solid var(--line);z-index:10}
 .btn{font:inherit;font-size:21px;font-weight:700;border-radius:14px;min-height:62px;border:0;cursor:pointer;white-space:nowrap;padding:0 14px;-webkit-tap-highlight-color:transparent}
